@@ -11,15 +11,17 @@ interface IPrivateRoute{
 const PrivateRoute = ({ component}:IPrivateRoute) => {
 
   const currentRole = useSelector((state: { role: string }) => state.role);
-  const currentFloor = useSelector((state: { floorIndex: number }) => state.floorIndex);
+  const currentFloor =useParams<{ index: string }>()
+
   const floorAccess = useSelector((state: { floorAccess: { floorAccess: [boolean, boolean, boolean, boolean, boolean] } }) => state.floorAccess.floorAccess);
  
   console.log(currentFloor, "aaa")
   const navigate = useNavigate();
 
   useEffect(() => {
-    
-    if(floorAccess[currentFloor ] === false) {
+    const intFloor = Number(currentFloor);
+
+    if(floorAccess[intFloor ] === false) {
       navigate(`/forbidden`); 
     }
   }, [currentRole, currentFloor, floorAccess]);
