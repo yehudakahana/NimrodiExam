@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeAccess } from "../../store/floorreducer";
-import { setRole } from "../../store/Rolereducer";
+import { setRole } from "../../store/rolereducer";
 import useBuildingData from "../../utils/BuildingDataProvider";
 import optionalroles from "../../data/roles.json";
 import "./Reception.css";
@@ -11,6 +11,10 @@ const Reception: React.FC = () => {
     (state: { floorAccess: { floorAccess: [boolean, boolean, boolean, boolean, boolean] } }) => state.floorAccess.floorAccess
   );
   const currentRole = useSelector((state: { role: string }) => state.role);
+
+  console.log(currentRole)
+
+
   const { getFloorByIndex } = useBuildingData();
   const dispatch = useDispatch();
 
@@ -19,6 +23,7 @@ const Reception: React.FC = () => {
   };
 
   const handleSetRole = (index: number) => {
+    console.log(index)
     dispatch(setRole(index));
   };
 
