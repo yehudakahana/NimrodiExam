@@ -11,7 +11,7 @@ interface IPrivateRoute{
 const PrivateRoute = ({ component}:IPrivateRoute) => {
 
   const currentRole = useSelector((state: { role: string }) => state.role);
-  const currentFloor =useParams<{ index: string }>()
+  const currentFloor =useParams<{ index: string }>().index;
 
   const floorAccess = useSelector((state: { floorAccess: { floorAccess: [boolean, boolean, boolean, boolean, boolean] } }) => state.floorAccess.floorAccess);
  
